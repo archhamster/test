@@ -17,6 +17,7 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Cache;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\Form\FormError;
 
 class SiteController extends AbstractController
 {
@@ -39,6 +40,13 @@ class SiteController extends AbstractController
         $form = $this->createForm(FeedbackType::class, $feedback);
         $form->handleRequest($request);
 
+        $message = 'Произошла какая-то ошибка';
+        if ($form->isSubmitted() && (empty($feedback->getPhone()) and
+                empty($feedback->getEmail()) )) {
+            $message = 'Хотя бы одно из полей - телефон, электронная почта должны быть заполнены!';
+            $form->addError(new FormError($message));
+        }
+
         if ($form->isSubmitted() && $form->isValid()) {
             $em = $this->getDoctrine()->getManager();
             $em->persist($feedback);
@@ -54,7 +62,7 @@ class SiteController extends AbstractController
 
         return new JsonResponse([
             'valid' => false,
-            'message' => 'Произошла какая-то ошибка',
+            'message' => $message,
             'alert' => 'danger',
             'errors' => $this->getErrorMessages($form)
         ]);

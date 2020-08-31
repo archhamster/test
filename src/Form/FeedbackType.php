@@ -25,7 +25,7 @@ class FeedbackType extends AbstractType
             ])
             ->add('phone',IntegerType::class,[
                 'label'=>'Телефон',
-                'required' => true,
+                'required' => false,
                 //'error_bubbling'=>true,
                 'attr' => [
                     'min' => 10000000000,
@@ -35,7 +35,7 @@ class FeedbackType extends AbstractType
             ])
             ->add('email',EmailType::class,[
                 'label'=>'Почта',
-                'required' => true,
+                'required' => false,
                 //'error_bubbling'=>true
             ])
             ->add('question',TextareaType::class,[
