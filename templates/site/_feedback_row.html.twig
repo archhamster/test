@@ -1,0 +1,13 @@
+
+<div class="form-agro">
+    <div class="row">
+        {{ form_label(attribute) }}
+        {{ attribute.vars.required ? '<span class ="red">*</span>':'' }}
+    </div>
+    <div class="row" id="{{ attribute.vars.name }}">
+        {{ form_errors(attribute) }}
+    </div>
+    <div class="row">
+        {{ form_widget(attribute) }}
+    </div>
+</div>

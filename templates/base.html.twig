@@ -1,12 +1,122 @@
 <!DOCTYPE html>
 <html>
-    <head>
-        <meta charset="UTF-8">
-        <title>{% block title %}Welcome!{% endblock %}</title>
-        {% block stylesheets %}{% endblock %}
-    </head>
-    <body>
-        {% block body %}{% endblock %}
-        {% block javascripts %}{% endblock %}
-    </body>
+<head>
+    <meta charset="UTF-8">
+    <title>{% block title %}Главная страница{% endblock %}</title>
+    {% block stylesheets %}
+        <link href="{{ asset('glyphicons.css') }}" rel="stylesheet"/>
+        <link href="{{ asset('bootstrap-4.4.1-dist/css/bootstrap.min.css') }}" rel="stylesheet"/>
+        <link href="{{ asset('site.css') }}" rel="stylesheet"/>
+    {% endblock %}
+
+    {% block js %}
+        <script src="https://code.jquery.com/jquery-3.4.1.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"></script>
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+        <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    {% endblock %}
+</head>
+<body>
+    {% block menu %}
+        <nav class="navbar navbar-expand-lg navbar-dark menu">
+            <a class="navbar-brand" href="#">
+                <span class="glyphicon glyphicon-grain"></span> AgroTorgi
+            </a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+                <div class="navbar-nav row container full-width">
+                    <div class="col">
+                        <div class="row justify-content-center">
+                            <div class="col-md-auto"><a class="nav-item nav-link" href="#">Продавцам</a></div>
+                            <div class="col-md-auto"><a class="nav-item nav-link" href="#">Покупателям</a></div>
+                            <div class="col-md-auto"><a class="nav-item nav-link" href="#">О нас</a></div>
+                        </div>
+                    </div>
+                    <div class="col-auto">
+                        <div class="row justify-content-end">
+                            <div class="col-md-auto"> <a class="nav-item nav-link">8 800 6000 450</a></div>
+                            <div class="col-md-auto">
+                                <a class="nav-item nav-link">
+                                    <button class="btn-bordered"> <i class="glyphicon glyphicon-log-in"></i> Вход</button>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </nav>
+    {% endblock %}
+
+    {% block body %}{% endblock %}
+
+    {% block footer %}
+        <nav class="navbar navbar-expand-lg navbar-dark menu">
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAlt" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNavAlt">
+                <div class="navbar-nav row container full-width">
+                    <div class="col">
+                        <div class="row justify-content-center">
+                            <div class="col-md-auto"><a class="nav-item nav-link" href="#">Продавцам</a></div>
+                            <div class="col-md-auto"><a class="nav-item nav-link" href="#">Покупателям</a></div>
+                            <div class="col-md-auto"><a class="nav-item nav-link" href="#">О нас</a></div>
+                        </div>
+                    </div>
+                    <div class="col-auto">
+                        <div class="row justify-content-end">
+                            <div class="col-md-auto"> <a class="nav-item nav-link">8 800 6000 450</a></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </nav>
+    {% endblock %}
+
+    {% block javascripts %}
+        <script>
+            let app = new Vue({
+                el: "#feedback",
+                methods: {
+                    sendForm: function () {
+                        var errors = document.getElementById("errors");
+                        axios
+                            .post("/", new FormData(this.$refs.form))
+                            .then(function (response) {
+                                console.log(response.data)
+                                errors.innerHTML =
+                                    '<div class="alert alert-'+ response.data.alert + ' alert-dismissible fade show parent-width" role="alert">' +
+                                        response.data.message +
+                                    '   <button type="button" class="close" data-dismiss="alert" aria-label="Close">' +
+                                    '       <span aria-hidden="true">&times;</span>' +
+                                    '   </button>' +
+                                    '</div>'
+                                ;
+
+                                if(!response.data.valid){
+                                    for (var key in response.data.errors) {
+                                        document.getElementById(key).innerHTML =
+                                            '<div class="alert alert-danger alert-dismissible fade show parent-width" role="alert">' +
+                                            response.data.errors[key] +
+                                            '   <button type="button" class="close" data-dismiss="alert" aria-label="Close">' +
+                                            '       <span aria-hidden="true">&times;</span>' +
+                                            '   </button>' +
+                                            '</div>'
+                                        ;
+                                    }
+                                }
+                            })
+                            .catch(function (response) {
+                                console.log(response.data)
+                            })
+                    }
+                }
+            });
+        </script>
+    {% endblock %}
+</body>
 </html>
+
