@@ -1,0 +1,19 @@
+{{ form_start(form,{'attr':{'ref':'form','@submit.prevent':'sendForm'}}) }}
+    <div id = "errors" v-html = "errors" class="row">
+        {{ form_errors(form) }}
+    </div>
+
+    {{ include('site/_feedback_row.html.twig', {'attribute':form.name}) }}
+    {{ include('site/_feedback_row.html.twig', {'attribute':form.phone}) }}
+    {{ include('site/_feedback_row.html.twig', {'attribute':form.email}) }}
+    {{ include('site/_feedback_row.html.twig', {'attribute':form.question}) }}
+
+    <hr>
+
+    <div class="row">
+        <button type="submit" class="btn btn-primary btn-lg btn-block btn-feedback">
+            <i class="glyphicon glyphicon-envelope"></i> Отправить
+        </button>
+        {#{{ form_widget(form.submit, {'attr':{'class':'btn btn-success btn-lg btn-block btn-feedback'}}) }}#}
+    </div>
+{{ form_end(form) }}

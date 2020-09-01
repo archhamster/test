@@ -1,0 +1,76 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    {% block advanteges %}
+        <div class="card bg-dark text-white block">
+            <img class="card-img" src="{{ asset('/images/wheat.webp') }}" alt="Card image">
+            <div class="card-img-overlay advantage">
+                <h5 class="card-title card-title-text">Заголовок 1</h5>
+                <p class="card-text card-content-text">Какой-то текст. Какой-то текст.Какой-то текст.Какой-то текст.Какой-то текст.Какой-то текст.Какой-то текст.</p>
+            </div>
+        </div>
+        <div class="card bg-dark text-white block">
+            <img class="card-img" src="{{ asset('/images/wheat2.jpg') }}" alt="Card image">
+            <div class="card-img-overlay advantage">
+                <h5 class="card-title card-title-text">Заголовок 2</h5>
+                <p class="card-text card-content-text">Какой-то текст. Какой-то текст.Какой-то текст.Какой-то текст.Какой-то текст.Какой-то текст.Какой-то текст.</p>
+            </div>
+        </div>
+        <div class="card bg-dark text-white block">
+            <img class="card-img" src="{{ asset('/images/wheat3.jpg') }}" alt="Card image">
+            <div class="card-img-overlay advantage">
+                <h5 class="card-title card-title-text">Заголовок 3</h5>
+                <p class="card-text card-content-text">Какой-то текст. Какой-то текст.Какой-то текст.Какой-то текст.Какой-то текст.Какой-то текст.Какой-то текст.</p>
+            </div>
+        </div>
+        <div class="card bg-dark text-white block">
+            <img class="card-img" src="{{ asset('/images/wheat4.jpg') }}" alt="Card image">
+            <div class="card-img-overlay advantage">
+                <h5 class="card-title card-title-text">Заголовок 4</h5>
+                <p class="card-text card-content-text">Какой-то текст. Какой-то текст.Какой-то текст.Какой-то текст.Какой-то текст.Какой-то текст.Какой-то текст.</p>
+            </div>
+        </div>
+        <div class="card bg-dark text-white block">
+            <img class="card-img" src="{{ asset('/images/wheat5.jpg') }}" alt="Card image">
+            <div class="card-img-overlay advantage">
+                <h5 class="card-title card-title-text">Заголовок 5</h5>
+                <p class="card-text card-content-text">Какой-то текст. Какой-то текст.Какой-то текст.Какой-то текст.Какой-то текст.Какой-то текст.Какой-то текст.</p>
+            </div>
+        </div>
+        <div class="card bg-blue text-white block">
+            <div class="card-img-overlay advantage">
+                <h5 class="card-title card-title-text">Заголовок 6</h5>
+                <p class="card-text card-content-text">Какой-то текст. Какой-то текст.Какой-то текст.Какой-то текст.Какой-то текст.Какой-то текст.Какой-то текст.</p>
+            </div>
+        </div>
+        <div class="card bg-white text-black block">
+            <div class="card-img-overlay advantage">
+                <h5 class="card-title card-title-text">Заголовок 7</h5>
+                <p class="card-text card-content-text">Какой-то текст. Какой-то текст.Какой-то текст.Какой-то текст.Какой-то текст.Какой-то текст.Какой-то текст.</p>
+            </div>
+        </div>
+    {% endblock %}
+
+    {% block feedback %}
+        <div id = "feedback" class="card bg-yellow text-white block-feedback">
+            <div class="card-img-overlay advantage">
+                <div class="no-padding container">
+                    <div class="row">
+                        <div class="col">
+                            <div class="row">
+                                <h5 class="card-title card-title-text">Обратная связь с нами</h5>
+                            </div>
+                            <div class="row">
+                                <p class="card-text card-content-text"> Напишите нам свой вопрос, и мы ответим вам в течение 5 рабочих дней.</p>
+                            </div>
+                        </div>
+                        <hr>
+                        <div class="col feedback-form">
+                            {{ include('site/_feedback_form.html.twig' ,{'form': form}) }}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    {% endblock %}
+{% endblock %}

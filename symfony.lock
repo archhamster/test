@@ -81,6 +81,9 @@
     "egulias/email-validator": {
         "version": "2.1.18"
     },
+    "laminas/laminas-zendframework-bridge": {
+        "version": "1.1.0"
+    },
     "monolog/monolog": {
         "version": "2.1.0"
     },
@@ -94,7 +97,7 @@
         "version": "2.2.3"
     },
     "php": {
-        "version": "7.2"
+        "version": "7.4"
     },
     "phpdocumentor/reflection-common": {
         "version": "2.2.0"
@@ -254,9 +257,6 @@
         "version": "v5.1.2"
     },
     "symfony/http-kernel": {
-        "version": "v5.1.2"
-    },
-    "symfony/inflector": {
         "version": "v5.1.2"
     },
     "symfony/intl": {
@@ -506,6 +506,9 @@
     },
     "twig/twig": {
         "version": "v3.0.3"
+    },
+    "webimpress/safe-writer": {
+        "version": "2.1.0"
     },
     "webmozart/assert": {
         "version": "1.9.0"
